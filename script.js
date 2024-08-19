@@ -31,17 +31,17 @@ const restaurant = {
 //Array Destructuring arrays
 
 //without Destructuring:
-const arr = [2, 3, 4];
+// const arr = [2, 3, 4];
 
-const a = arr[0];
-const b = arr[1];
-const c = arr[2];
+// const a = arr[0];
+// const b = arr[1];
+// const c = arr[2];
 
-console.log(a, b, c);
+// console.log(a, b, c);
 
 //with Destructuring:
-const [x, y, z] = arr;
-console.log(x, y, z);
+// const [x, y, z] = arr;
+// console.log(x, y, z);
 
 // const [first, , second] = restaurant.categories;
 // console.log(first, second);
@@ -49,8 +49,8 @@ console.log(x, y, z);
 // const [third, ,fourth] = restaurant.categories;
 // console.log(third, fourth);
 
-let [main, , secondary] = restaurant.categories;
-console.log(main, secondary);
+// let [main, , secondary] = restaurant.categories;
+// console.log(main, secondary);
 
 //Switching variables without Destructuring:
 // const temp = main;
@@ -59,5 +59,79 @@ console.log(main, secondary);
 // console.log(main, secondary);
 
 //Switching variables with Destructuring:
-[main, secondary] = [secondary, main];
-console.log(main, secondary);
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);
+
+//Object Destructuring
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
+
+//Let's Destructuring Menu
+// const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+//Task 1:
+for (const [index, player] of game.scored.entries()) {
+  console.log(`Goal ${index + 1}: ${player}`);
+}
+
+//Task 2:
+const odds = Object.values(game.odds);
+let average = 0;
+
+for (const odd of odds) {
+  average += odd
+  average /= odds.length;
+  console.log(average);
+}
+
+//Task 3:
+for(const [team, odd] of Object.entries(game.odds)){
+     const teamStr =  team === 'x' ? 'draw' : `victory ${game[team]}`
+     console.log(`Odd of ${teamStr} ${odd}`);
+    
+}
+
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
